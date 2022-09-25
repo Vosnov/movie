@@ -1,21 +1,22 @@
 @import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/variables.scss';
 
 .wrapper {
   @include flexbox();
   flex-direction: column;
-  border: 8px solid black;
-  box-shadow: 8px 8px 0px black;
+  border: 8px solid $black;
+  box-shadow: 8px 8px 0px $black;
 }
 
 .head {
   @include flexbox(center, space-between);
-  background-color: black;
-  color: white;
+  background-color: $black;
+  color: $white;
   width: 100%;
   padding-bottom: 8px;
 
   img {
-    color: white;
+    color: $white;
   }
 }
 
@@ -26,7 +27,7 @@
 .circle {
   width: 16px;
   height: 16px;
-  border: 1px solid white;
+  border: 1px solid $white;
   border-radius: 100%;
   
   &:not(:last-child) {
