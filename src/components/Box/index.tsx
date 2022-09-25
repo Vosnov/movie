@@ -13,6 +13,7 @@ type Props = {
 export const Box: FC<Props> = ({children, className, bodyClassName, title}) => {
   return (
     <div className={cx(styles.wrapper, className)}>
+      <div className={styles.shadow}></div>
       <div className={styles.head}>
         <div className={styles.circles}>
           <div className={styles.circle}></div>
