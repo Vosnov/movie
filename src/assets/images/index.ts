@@ -1,3 +1,5 @@
 export {default as WhiteCloseIcon} from './close.svg'
 export {default as WhitePlayIcon} from './play.svg'
 export {default as BgIcon} from './bg.png'
+export {default as CalendarIcon} from './calendar.svg'
+export {default as RankIcon} from './rank.svg'
