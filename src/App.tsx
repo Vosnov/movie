@@ -1,16 +1,19 @@
-import { BoxMovieList, ShortMovie } from 'components';
-import { Box } from 'components/Box';
 import React from 'react';
-import { movieApi } from 'services';
 import './App.css';
+import {Routes, Route, BrowserRouter} from 'react-router-dom'
+import { Dashboard } from 'pages';
+
+enum RoutePath {
+  dashboard = '/'
+}
 
 function App() {
-  const {data} = movieApi.useGetTop250Query()
-
   return (
-    <div className="App">
-      <BoxMovieList title='Top 250 Movie' data={data?.items.slice(0, 10) || []}/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={RoutePath.dashboard} element={<Dashboard/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

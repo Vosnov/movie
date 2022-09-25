@@ -1,12 +1,12 @@
 import { Box } from 'components/Box'
 import { ShortMovie } from 'components/ShortMovie'
 import React, { FC } from 'react'
-import { Top250Detail } from '../../services/movie'
+import { MovieDetail } from '../../services/movie'
 import styles from './styles.module.scss'
 import cx from 'classnames'
 
 type Props = {
-  data: Top250Detail[]
+  data: MovieDetail[]
   title?: string
   className?: string
 }

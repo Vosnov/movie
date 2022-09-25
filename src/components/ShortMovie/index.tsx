@@ -1,5 +1,6 @@
 import { CalendarIcon, RankIcon } from 'assets/images'
 import React, { FC, useCallback } from 'react'
+import { getRandomInt } from 'utils'
 import styles from './styles.module.scss'
 
 type Props = {
@@ -10,12 +11,6 @@ type Props = {
 }
 
 const colors = ['#FF5C5C', '#4D7BFF', '#7FFF5B', '#FFFF50', '#FF90FF']
-
-const getRandomInt = (min: number, max: number) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export const ShortMovie: FC<Props> = ({
   image,
