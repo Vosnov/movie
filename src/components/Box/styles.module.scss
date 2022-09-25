@@ -1,0 +1,45 @@
+@import '../../assets/styles/mixins.scss';
+
+.wrapper {
+  @include flexbox();
+  flex-direction: column;
+  border: 8px solid black;
+  box-shadow: 8px 8px 0px black;
+}
+
+.head {
+  @include flexbox(center, space-between);
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding-bottom: 8px;
+
+  img {
+    color: white;
+  }
+}
+
+.circles {
+  @include flexbox()
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  border: 1px solid white;
+  border-radius: 100%;
+  
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+
+.title_wrapper {
+  @include flexbox(center, center);
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-right: 10px;
+}
