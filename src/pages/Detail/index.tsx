@@ -1,10 +1,9 @@
 import { Box, Image, MovieDetailRow } from 'components';
-import React, { useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import React, { useCallback, useMemo } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { movieApi, MovieDetailData } from 'services';
 import styles from './styles.module.scss'
 import data from './data.json'
-import { getRandomColor } from 'utils';
 import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
 
@@ -14,14 +13,19 @@ const typedData = ((data as unknown) as MovieDetailData)
 export const Detail = () => {
   const [search] = useSearchParams()
   const id = useMemo(() => (search.get('id')), [search])
+  const navigate = useNavigate()
 
   // const {data} = movieApi.useGetTitleQuery(id)
 
   console.log(data)
 
+  const back = useCallback(() => {
+    navigate(-1)
+  }, [navigate])
+
   return (
     <div className={styles.wrapper}>
-      <Box className={styles.box} bodyClassName={styles.box_body} title={typedData.fullTitle}>
+      <Box onClose={back} className={styles.box} bodyClassName={styles.box_body} title={typedData.fullTitle}>
         <div className={styles.left_section}>
           <Image className={styles.logo} alt='movieLogo' src={typedData.image} colorBorder/>
           <div className={styles.stats}>

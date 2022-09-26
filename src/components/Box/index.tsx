@@ -2,16 +2,17 @@ import { WhiteCloseIcon, WhitePlayIcon } from 'assets/images'
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
 import cx from 'classnames'
-import { Image } from 'components'
+import { Image, ButtonIcon } from 'components'
 
 type Props = {
   children?: React.ReactNode
   className?: string
   bodyClassName?: string
   title?: string
+  onClose?: () => void
 }
 
-export const Box: FC<Props> = ({children, className, bodyClassName, title}) => {
+export const Box: FC<Props> = ({children, className, bodyClassName, title, onClose}) => {
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={styles.shadow}></div>
@@ -25,7 +26,7 @@ export const Box: FC<Props> = ({children, className, bodyClassName, title}) => {
           <p className={styles.title}>{title}</p>
           <Image src={WhitePlayIcon} className={styles.icon} alt="icon" />
         </div>
-        <Image src={WhiteCloseIcon} className={styles.icon} alt="icon" />
+        <ButtonIcon onClick={onClose} imgClassName={styles.icon} alt='icon' src={WhiteCloseIcon} />
       </div>
 
       <div className={bodyClassName}>
