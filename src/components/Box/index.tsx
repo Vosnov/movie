@@ -2,6 +2,7 @@ import { WhiteCloseIcon, WhitePlayIcon } from 'assets/images'
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
 import cx from 'classnames'
+import { Image } from 'components'
 
 type Props = {
   children?: React.ReactNode
@@ -22,9 +23,9 @@ export const Box: FC<Props> = ({children, className, bodyClassName, title}) => {
         </div>
         <div className={styles.title_wrapper}>
           <p className={styles.title}>{title}</p>
-          <img src={WhitePlayIcon} width={16} alt="" />
+          <Image src={WhitePlayIcon} className={styles.icon} alt="icon" />
         </div>
-        <img src={WhiteCloseIcon} width={16} alt="" />
+        <Image src={WhiteCloseIcon} className={styles.icon} alt="icon" />
       </div>
 
       <div className={bodyClassName}>

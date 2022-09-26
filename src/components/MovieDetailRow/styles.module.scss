@@ -1,0 +1,10 @@
+.label {
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  span {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

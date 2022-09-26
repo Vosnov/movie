@@ -1,8 +1,9 @@
 import { RoutePath } from 'App'
 import { CalendarIcon, RankIcon } from 'assets/images'
-import React, { FC, useCallback } from 'react'
+import { Image } from 'components'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { getRandomColor, getRandomInt } from 'utils'
+import { getRandomColor } from 'utils'
 import styles from './styles.module.scss'
 
 type Props = {
@@ -26,15 +27,15 @@ export const ShortMovie: FC<Props> = ({
       search: `?id=${id}`
     }}>
       <div className={styles.wrapper}>
-        <img className={styles.image} style={{borderColor: getRandomColor()}} src={image} alt="movieLogo" />
+        <Image className={styles.image} src={image} alt="movieLogo" colorBorder/>
         <p className={styles.title}>{title}</p>
         <div className={styles.info_wrapper}>
           <div className={styles.info}>
-            <img className={styles.info_icon} width={16} src={CalendarIcon} alt="icon" />
+            <Image className={styles.info_icon} width={16} src={CalendarIcon} alt="icon" />
             <p>{year}</p>
           </div>
           <div className={styles.info}>
-            <img className={styles.info_icon} width={16} src={RankIcon} alt="icon" />
+            <Image className={styles.info_icon} width={16} src={RankIcon} alt="icon"/>
             <p>{rank}</p>
           </div>
         </div>

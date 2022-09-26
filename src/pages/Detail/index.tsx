@@ -1,11 +1,11 @@
-import { Box } from 'components';
+import { Box, Image, MovieDetailRow } from 'components';
 import React, { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { movieApi, MovieDetailData } from 'services';
 import styles from './styles.module.scss'
 import data from './data.json'
 import { getRandomColor } from 'utils';
-import { IMDBIcon, PlayIcon, WhitePlayIcon } from 'assets/images';
+import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
 
 
@@ -23,33 +23,33 @@ export const Detail = () => {
     <div className={styles.wrapper}>
       <Box className={styles.box} bodyClassName={styles.box_body} title={typedData.fullTitle}>
         <div className={styles.left_section}>
-          <img style={{borderColor: getRandomColor()}} className={styles.logo} src={typedData.image} alt="movieLogo" />
+          <Image className={styles.logo} alt='movieLogo' src={typedData.image} colorBorder/>
           <div className={styles.stats}>
             <div className={styles.rating}>
-              <img width={16} src={IMDBIcon} alt="icon" />
+              <Image className={styles.icon} src={IMDBIcon} alt='icon' />
               <p>{typedData.imDbRating}</p>
             </div>
             <div className={styles.rating}>
-              <img width={16} src={PlayIcon} alt="icon" />
+              <Image className={styles.icon} src={PlayIcon} alt='icon' />
               <p>{typedData.metacriticRating}</p>
             </div>
           </div>
         </div>
         <div className={styles.right_section}>
-          {data.plot && <p className={styles.row}><span className={styles.bold}>PLOT</span>: {data.plot}</p>}
-          {data.releaseDate && <p className={styles.row}><span className={styles.bold}>DATE</span>: {data.releaseDate}</p>}
-          {data.runtimeStr && <p className={styles.row}><span className={styles.bold}>TIME</span>: {data.runtimeStr}</p>}
-          {data.genres && <p className={styles.row}><span className={styles.bold}>GENRES</span>: {data.genres}</p>}
-          {data.directors && <p className={styles.row}><span className={styles.bold}>DIRECTORS</span>: {data.directors}</p>}
-          {data.companies && <p className={styles.row}><span className={styles.bold}>COMPANIES</span>: {data.companies}</p>}
-          {data.contentRating && <p className={styles.row}><span className={styles.bold}>RATING</span>: {data.contentRating}</p>}
+          <MovieDetailRow label='plot' data={data.plot}/>
+          <MovieDetailRow label='date' data={data.releaseDate}/>
+          <MovieDetailRow label='time' data={data.runtimeStr}/>
+          <MovieDetailRow label='genres' data={data.genres}/>
+          <MovieDetailRow label='directors' data={data.directors}/>
+          <MovieDetailRow label='companies' data={data.companies}/>
+          <MovieDetailRow label='rating' data={data.contentRating}/>
           {data.actorList.length > 0 && (
             <>
               <span className={cx(styles.bold, styles.row)}>ACTORS: </span>
               <div className={styles.actor_list}>
                 {data.actorList.map(actor => (
                   <div key={actor.id} className={styles.actor}>
-                    <img style={{borderColor: getRandomColor()}} src={actor.image} alt="actor" />
+                    <Image src={actor.image} colorBorder/>
                     <p>{actor.name}</p>
                   </div>
                 ))}
