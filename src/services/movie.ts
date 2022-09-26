@@ -15,6 +15,12 @@ export type MovieData = {
   ErrorMessage: string
 }
 
+type Actor = {
+  name: string
+  img: string
+  id: string
+}
+
 export type MovieDetailData = {
   id: string
   title: string
@@ -25,6 +31,14 @@ export type MovieDetailData = {
   image: string
   imDbRating: string
   metacriticRating: string
+  plot: string
+  actorList: Actor[]
+  runtimeStr: string
+  genres: string
+  directors: string
+  companies: string
+  contentRating: string
+  releaseDate: string
 }
 
 export const movieApi = createApi({

@@ -2,7 +2,7 @@ import { RoutePath } from 'App'
 import { CalendarIcon, RankIcon } from 'assets/images'
 import React, { FC, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { getRandomInt } from 'utils'
+import { getRandomColor, getRandomInt } from 'utils'
 import styles from './styles.module.scss'
 
 type Props = {
@@ -13,8 +13,6 @@ type Props = {
   id: string
 }
 
-const colors = ['#FF5C5C', '#4D7BFF', '#7FFF5B', '#FFFF50', '#FF90FF']
-
 export const ShortMovie: FC<Props> = ({
   image,
   title,
@@ -22,11 +20,6 @@ export const ShortMovie: FC<Props> = ({
   rank,
   id
 }) => {
-  const getRandomColor = useCallback(() => {
-    const random = getRandomInt(0, colors.length - 1)
-    return colors[random]
-  }, [])
-
   return (
     <Link to={{
       pathname: RoutePath.detail,
