@@ -15,7 +15,14 @@ export const BoxMovieList: FC<Props> = ({data, title, className}) => {
   return (
     <Box title={title} className={cx(styles.wrapper, className)} bodyClassName={styles.box_body}>
       {data.map(item => (
-        <ShortMovie key={item.id} image={item.image} rank={item.rank} title={item.title} year={item.year}/>
+        <ShortMovie
+         id={item.id} 
+         key={item.id} 
+         image={item.image} 
+         rank={item.rank} 
+         title={item.title} 
+         year={item.year}
+         />
       ))}
     </Box>
   )

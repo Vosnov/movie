@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
-import { Dashboard } from 'pages';
+import { Dashboard, Detail } from 'pages';
 
-enum RoutePath {
-  dashboard = '/'
+export enum RoutePath {
+  dashboard = '/',
+  detail = '/detail'
 }
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={RoutePath.dashboard} element={<Dashboard/>}/>
+        <Route path={RoutePath.detail} element={<Detail/>}/>
       </Routes>
     </BrowserRouter>
   );

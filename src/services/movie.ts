@@ -15,6 +15,18 @@ export type MovieData = {
   ErrorMessage: string
 }
 
+export type MovieDetailData = {
+  id: string
+  title: string
+  originalTitle: string
+  fullTitle: string
+  year: string
+  awards: string
+  image: string
+  imDbRating: string
+  metacriticRating: string
+}
+
 export const movieApi = createApi({
   reducerPath: 'movieApi',
   baseQuery: fetchBaseQuery({baseUrl: 'https://imdb-api.com/en/API'}),
@@ -27,6 +39,9 @@ export const movieApi = createApi({
     }),
     getMostPopularTV: build.query<MovieData, void>({
       query: () => ({url: `/MostPopularTVs/${token}`})
+    }),
+    getTitle: build.query<MovieData, string | null>({
+      query: (id) => ({url: `/Title/${token}/${id}/FullActor,FullCast,Posters,Images,Trailer,Ratings`})
     }),
   })
 })
