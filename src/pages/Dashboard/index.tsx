@@ -1,4 +1,5 @@
 import { BoxMovieList } from 'components';
+import { useErrorRedirect } from 'hooks';
 import React from 'react'
 import { movieApi } from 'services';
 import styles from './styles.module.scss'
@@ -8,6 +9,8 @@ export const Dashboard = () => {
   // const {data: top250Data, isLoading: top250Loading} = movieApi.useGetTop250Query()
   // const {data: mostPopularData, isLoading: mostPopularLoading} = movieApi.useGetMostPopularQuery() 
   // const {data: mostPopularTVs, isLoading: mostPopularTvLoading} = movieApi.useGetMostPopularTVQuery()
+
+  useErrorRedirect(false)
 
   return (
     <div className={styles.wrapper}>

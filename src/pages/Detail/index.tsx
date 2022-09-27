@@ -6,22 +6,21 @@ import styles from './styles.module.scss'
 import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
 // import data from './data.json'
-import { usePagination } from 'hooks';
+import { useErrorRedirect, usePagination } from 'hooks';
 
 export const Detail = () => {
   const [search] = useSearchParams()
   const id = useMemo(() => (search.get('id')), [search])
   const navigate = useNavigate()
 
-  const {data, isLoading} = movieApi.useGetTitleQuery(id)
+  const {data, isLoading, isError} = movieApi.useGetTitleQuery(id)
+  useErrorRedirect(isError)
 
   const back = useCallback(() => {
     navigate(-1)
   }, [navigate])
 
   const {count, onChange, paginationData} = usePagination(data?.actorList || [], 10)
-
-  // console.log(data.actorList.length)
 
   return (
     <div className={styles.wrapper}>
