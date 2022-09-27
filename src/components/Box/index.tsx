@@ -12,7 +12,7 @@ type Props = {
   onClose?: () => void
 }
 
-export const Box: FC<Props> = ({children, className, bodyClassName, title, onClose}) => {
+export const Box: FC<Props> = React.memo(({children, className, bodyClassName, title, onClose}) => {
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={styles.shadow}></div>
@@ -34,4 +34,4 @@ export const Box: FC<Props> = ({children, className, bodyClassName, title, onClo
       </div>
     </div>
   )
-}
+})

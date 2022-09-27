@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { getRandomColor } from 'utils'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   alt?: string
 } & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 
-export const Image: FC<Props> = ({
+export const Image: FC<Props> = memo(({
   src: image,
   colorBorder,
   alt,
@@ -21,4 +21,4 @@ export const Image: FC<Props> = ({
       {...props}
     />
   )
-}
+})
