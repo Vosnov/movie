@@ -1,0 +1,22 @@
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/variables.scss';
+
+.wrapper {
+  @include flexbox();
+
+  li {
+    list-style-type: none;
+    background-color: $black;
+    color: $white;
+    padding: 4px;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-left: 6px;
+    }
+  }
+}
+
+.active {
+  border: 1px solid red;
+}
