@@ -2,17 +2,33 @@ import { BoxMovieList } from 'components';
 import React from 'react'
 import { movieApi } from 'services';
 import styles from './styles.module.scss'
+import data from './top250.json'
 
 export const Dashboard = () => {
-  const {data: top250Data} = movieApi.useGetTop250Query()
-  const {data: mostPopularData} = movieApi.useGetMostPopularQuery() 
-  const {data: mostPopularTVs} = movieApi.useGetMostPopularTVQuery()
+  // const {data: top250Data, isLoading: top250Loading} = movieApi.useGetTop250Query()
+  // const {data: mostPopularData, isLoading: mostPopularLoading} = movieApi.useGetMostPopularQuery() 
+  // const {data: mostPopularTVs, isLoading: mostPopularTvLoading} = movieApi.useGetMostPopularTVQuery()
 
   return (
     <div className={styles.wrapper}>
-      <BoxMovieList className={styles.box} title='Top 250 Movies' data={top250Data?.items.slice(0, 10) || []}/>
-      <BoxMovieList className={styles.box} title='Most Popular Movies' data={mostPopularData?.items.slice(0, 10) || []}/>
-      <BoxMovieList className={styles.box} title='Most Popular TVs' data={mostPopularTVs?.items.slice(0, 10) || []}/>
+      <BoxMovieList 
+        isLoading={false} 
+        className={styles.box} 
+        title='Top 250 Movies' 
+        data={data?.items || []}
+      />
+      <BoxMovieList 
+        isLoading={false} 
+        className={styles.box} 
+        title='Most Popular Movies' 
+        data={data?.items || []}
+      />
+      <BoxMovieList 
+        isLoading={false} 
+        className={styles.box} 
+        title='Most Popular TVs' 
+        data={data?.items || []}
+      />
     </div>
   );
 }
