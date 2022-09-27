@@ -11,18 +11,9 @@ type Props = {
 }
 
 export const DragElement: FC<Props> = ({children}) => {
-  const [enter, setEnter] = useState(false)
   const [grab, setGrab] = useState(false)
   const [startPosition, setStartPosition] = useState<Position>()
   const ref = useRef<HTMLDivElement>(null)
-
-  const onEnter = useCallback(() => {
-    setEnter(true)
-  }, [])
-
-  const onLeave = useCallback(() => {
-    setEnter(false)
-  }, [])
 
   const down = useCallback<MouseEventHandler<HTMLDivElement>>((e) => {
     setGrab(true)
@@ -55,8 +46,6 @@ export const DragElement: FC<Props> = ({children}) => {
       onMouseDown={down}
       onMouseMove={moveHandler}
       style={{position: startPosition !== undefined ? 'absolute' : undefined, backgroundColor: 'red'}}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}  
     >
       {children}
     </div>

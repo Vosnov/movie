@@ -5,7 +5,7 @@ import { movieApi } from 'services';
 import styles from './styles.module.scss'
 import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
-import data from './data.json'
+// import data from './data.json'
 import { usePagination } from 'hooks';
 
 export const Detail = () => {
@@ -13,15 +13,15 @@ export const Detail = () => {
   const id = useMemo(() => (search.get('id')), [search])
   const navigate = useNavigate()
 
-  // const {data, isLoading} = movieApi.useGetTitleQuery(id)
+  const {data, isLoading} = movieApi.useGetTitleQuery(id)
 
   const back = useCallback(() => {
     navigate(-1)
   }, [navigate])
 
-  const {count, onChange, paginationData} = usePagination(data.actorList, 10)
+  const {count, onChange, paginationData} = usePagination(data?.actorList || [], 10)
 
-  console.log(data.actorList.length)
+  // console.log(data.actorList.length)
 
   return (
     <div className={styles.wrapper}>
