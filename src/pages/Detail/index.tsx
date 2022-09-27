@@ -1,17 +1,18 @@
-import { Box, DragElement, Image, MovieDetailRow } from 'components';
+import { Box, DragElement, Image, LoadableImage, MovieDetailRow } from 'components';
 import React, { useCallback, useMemo,} from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { movieApi } from 'services';
 import styles from './styles.module.scss'
 import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
+import data from './data.json'
 
 export const Detail = () => {
   const [search] = useSearchParams()
   const id = useMemo(() => (search.get('id')), [search])
   const navigate = useNavigate()
 
-  const {data, isLoading} = movieApi.useGetTitleQuery(id)
+  // const {data, isLoading} = movieApi.useGetTitleQuery(id)
 
   const back = useCallback(() => {
     navigate(-1)
@@ -21,7 +22,7 @@ export const Detail = () => {
     <div className={styles.wrapper}>
       <DragElement>
         <Box 
-          isLoading={isLoading}
+          isLoading={false}
           onClose={back} 
           className={styles.box} 
           bodyClassName={styles.box_body} 
@@ -30,7 +31,7 @@ export const Detail = () => {
           {data && (
             <>
               <div className={styles.left_section}>
-                <Image className={styles.logo} alt='movieLogo' src={data?.image} colorBorder/>
+                <LoadableImage className={styles.logo} alt='movieLogo' src={data?.image} colorBorder/>
                 <div className={styles.stats}>
                   <div className={styles.rating}>
                     <Image className={styles.icon} src={IMDBIcon} alt='icon' />
@@ -56,7 +57,7 @@ export const Detail = () => {
                     <div className={styles.actor_list}>
                       {data.actorList.slice(0, 20).map(actor => (
                         <div key={actor.id} className={styles.actor}>
-                          <Image src={actor.image} colorBorder/>
+                          <LoadableImage className={styles.actorImage} src={actor.image} colorBorder/>
                           <p>{actor.name}</p>
                         </div>
                       ))}

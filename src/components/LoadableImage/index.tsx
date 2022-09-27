@@ -7,7 +7,7 @@ export const LoadableImage: FC<ImageProps> = (props) => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const loadHandler = useCallback(() => {
-    setIsLoaded(false)
+    setIsLoaded(true)
   }, [])
 
 
