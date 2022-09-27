@@ -9,11 +9,12 @@ type Props = {
   data: MovieDetail[]
   title?: string
   className?: string
+  isLoading?: boolean
 }
 
-export const BoxMovieList: FC<Props> = ({data, title, className}) => {
+export const BoxMovieList: FC<Props> = ({data, title, className, isLoading}) => {
   return (
-    <Box title={title} className={cx(styles.wrapper, className)} bodyClassName={styles.box_body}>
+    <Box isLoading={isLoading} title={title} className={cx(styles.wrapper, className)} bodyClassName={styles.box_body}>
       {data.map(item => (
         <ShortMovie
          id={item.id} 

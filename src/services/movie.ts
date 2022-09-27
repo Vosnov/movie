@@ -17,7 +17,7 @@ export type MovieData = {
 
 type Actor = {
   name: string
-  img: string
+  image: string
   id: string
 }
 
@@ -54,7 +54,7 @@ export const movieApi = createApi({
     getMostPopularTV: build.query<MovieData, void>({
       query: () => ({url: `/MostPopularTVs/${token}`})
     }),
-    getTitle: build.query<MovieData, string | null>({
+    getTitle: build.query<MovieDetailData, string | null>({
       query: (id) => ({url: `/Title/${token}/${id}/FullActor,FullCast,Posters,Images,Trailer,Ratings`})
     }),
   })

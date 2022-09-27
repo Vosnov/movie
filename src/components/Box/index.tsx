@@ -2,7 +2,7 @@ import { WhiteCloseIcon, WhitePlayIcon } from 'assets/images'
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
 import cx from 'classnames'
-import { Image, ButtonIcon } from 'components'
+import { Image, ButtonIcon, Loader } from 'components'
 
 type Props = {
   children?: React.ReactNode
@@ -10,9 +10,10 @@ type Props = {
   bodyClassName?: string
   title?: string
   onClose?: () => void
+  isLoading?: boolean
 }
 
-export const Box: FC<Props> = React.memo(({children, className, bodyClassName, title, onClose}) => {
+export const Box: FC<Props> = React.memo(({children, className, bodyClassName, title, onClose, isLoading}) => {
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={styles.shadow}></div>
@@ -29,9 +30,16 @@ export const Box: FC<Props> = React.memo(({children, className, bodyClassName, t
         <ButtonIcon onClick={onClose} imgClassName={styles.icon} alt='icon' src={WhiteCloseIcon} />
       </div>
 
-      <div className={bodyClassName}>
-        {children}
-      </div>
+      {!isLoading && (
+        <div className={bodyClassName}>
+          {children}
+        </div>
+      )}
+      {isLoading && (
+        <div className={styles.loader_wrapper}>
+          <Loader className={styles.loader}/>
+        </div>
+      )}
     </div>
   )
 })
