@@ -1,4 +1,5 @@
-import React, { FC, MouseEventHandler, useCallback, useMemo, useRef, useState } from 'react'
+import React, { FC, MouseEventHandler, useCallback, useRef, useState } from 'react'
+import styles from './styles.module.scss'
 
 type Position = {
   x: number
@@ -35,13 +36,6 @@ export const DragElement: FC<Props> = ({children}) => {
     setGrab(false)
   }, [])
 
-  const cursor = useMemo(() => {
-    if (enter) return 'grab'
-    else if (grab) return 'grabbing'
-
-    return 'default'
-  }, [enter, grab])
-
   const moveHandler = useCallback<MouseEventHandler<HTMLDivElement>>((e) => {
     if (grab && ref.current) {
       e.preventDefault()
@@ -55,11 +49,12 @@ export const DragElement: FC<Props> = ({children}) => {
 
   return (
     <div
+      className={styles.grabbable}
       ref={ref}
       onMouseUp={up}
       onMouseDown={down}
       onMouseMove={moveHandler}
-      style={{cursor, position: startPosition !== undefined ? 'absolute' : undefined, backgroundColor: 'red'}}
+      style={{position: startPosition !== undefined ? 'absolute' : undefined, backgroundColor: 'red'}}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}  
     >

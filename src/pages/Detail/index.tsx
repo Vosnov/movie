@@ -1,4 +1,4 @@
-import { Box, DragElement, Image, LoadableImage, MovieDetailRow } from 'components';
+import { Box, DragElement, Image, LoadableImage, MovieDetailRow, Pagination } from 'components';
 import React, { useCallback, useMemo,} from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { movieApi } from 'services';
@@ -6,6 +6,7 @@ import styles from './styles.module.scss'
 import { IMDBIcon, PlayIcon } from 'assets/images';
 import cx from 'classnames'
 import data from './data.json'
+import { usePagination } from 'hooks';
 
 export const Detail = () => {
   const [search] = useSearchParams()
@@ -17,6 +18,10 @@ export const Detail = () => {
   const back = useCallback(() => {
     navigate(-1)
   }, [navigate])
+
+  const {count, onChange, paginationData} = usePagination(data.actorList, 10)
+
+  console.log(data.actorList.length)
 
   return (
     <div className={styles.wrapper}>
@@ -51,18 +56,19 @@ export const Detail = () => {
                 <MovieDetailRow label='directors' data={data.directors}/>
                 <MovieDetailRow label='companies' data={data.companies}/>
                 <MovieDetailRow label='rating' data={data.contentRating}/>
+                <span className={cx(styles.bold, styles.row)}>ACTORS: </span>
                 {data.actorList.length > 0 && (
-                  <>
-                    <span className={cx(styles.bold, styles.row)}>ACTORS: </span>
+                  <div className={styles.actors_wrapper}>
                     <div className={styles.actor_list}>
-                      {data.actorList.slice(0, 20).map(actor => (
+                      {paginationData.map(actor => (
                         <div key={actor.id} className={styles.actor}>
                           <LoadableImage className={styles.actorImage} src={actor.image} colorBorder/>
                           <p>{actor.name}</p>
                         </div>
                       ))}
                     </div>
-                  </>
+                    <Pagination className={styles.pagination} pageCount={count} onChange={onChange}/>
+                  </div>
                 )}
               </div>
             </>

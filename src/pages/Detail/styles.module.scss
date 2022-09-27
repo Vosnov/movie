@@ -58,14 +58,24 @@
   font-weight: bold;
 }
 
+.actors_wrapper {
+  @include flexbox(center, center);
+  flex-direction: column
+}
+
+.pagination {
+  margin-top: 20px
+}
+
 .actor_list {
-  @include flexbox();
-  overflow: auto;
+  @include flexbox(flex-start, center);
+  flex-wrap: wrap;
+  gap: 10px;
   width: 100%
 }
 
 .actor {
-  @include flexbox();
+  @include flexbox(center, center);
   flex-direction: column;
 
   &:not(:last-child) {
