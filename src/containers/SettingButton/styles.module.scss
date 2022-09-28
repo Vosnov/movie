@@ -29,12 +29,11 @@
 }
 
 .center {
-  left: initial;
-  bottom: inherit;
-  position: fixed;
-  width: 100%;
-  height: 100%;
   @include flexbox(center, center);
+  position: initial;
+  left: initial;
+  bottom: initial;
+  height: 100%;
 
   .icon {
     width: 80px;

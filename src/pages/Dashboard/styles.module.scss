@@ -1,8 +1,11 @@
 @import '../../assets/styles/mixins.scss';
 
 .wrapper {
+  @include flexbox(initial, initial);
+  flex-direction: column;
   margin: auto;
   max-width: 1100px;
+  height: 100%;
 }
 
 .box {
