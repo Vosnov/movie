@@ -1,5 +1,5 @@
 import { PlayIcon } from "assets/images";
-import { ButtonIcon, Modal } from "components";
+import { ButtonIcon, Modal, Checkbox } from "components";
 import { useAppDispatch, useAppSelector, useModal } from "hooks";
 import React, { FC, useCallback } from "react";
 import { MovieListName, movieListNames, movieSlice } from "store/reducres/movie";
@@ -32,7 +32,7 @@ export const SettingButton: FC<Props> = ({
       {movieNames.map(name => (
         <div key={name} className={styles.checkbox_wrapper}>
           <p>CLOSED {movieListNames[name]}</p>
-          <input type="checkbox" onChange={checkboxHandler(name)} checked={closeMoveListNames.includes(name)}/>
+          <Checkbox onChange={checkboxHandler(name)} checked={closeMoveListNames.includes(name)}/>
         </div>
       ))}
       </Modal>

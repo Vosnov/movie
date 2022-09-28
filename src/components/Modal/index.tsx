@@ -11,6 +11,8 @@ type Props = {
   title?: string
 }
 
+const elem = document.getElementById('root') as HTMLElement
+
 export const Modal: FC<Props> = ({
   isOpen,
   onClose,
@@ -20,6 +22,7 @@ export const Modal: FC<Props> = ({
 }) => {
   return (
     <RModal 
+      appElement={elem}
       overlayClassName={styles.overlay}
       shouldCloseOnOverlayClick={true}
       onRequestClose={onClose}
