@@ -62,7 +62,7 @@ const baseQueryWithError: typeof baseQuery = async (args, api, extraOptions) => 
   const result = await baseQuery(args, api, extraOptions)
   
   if (instanceOfErrorWithMessage(result.data)) {
-    if (result.data.errorMessage.length > 0) {
+    if (result.data.errorMessage !== null && result.data?.errorMessage.length > 0) {
       throw new Error(result.data.errorMessage)
     }
   }
@@ -87,7 +87,7 @@ export const movieApi = createApi({
       query: (id) => ({url: `/Title/${token}/${id}/FullActor,FullCast,Posters,Images,Trailer,Ratings`})
     }),
     search: build.mutation<MovieSearch, string>({
-      query: (search) => ({url: `/SearchTitle/${token}/${search}`, method: 'GET'})
+      query: (search) => ({url: `/SearchMovie/${token}/${search}`, method: 'GET'})
     }),
   })
 })

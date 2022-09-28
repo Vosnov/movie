@@ -1,12 +1,10 @@
-import { UseQueryHookResult } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { BoxMovieList } from 'components';
 import { Search, SettingButton } from 'containers';
-import { useAppDispatch, useAppSelector, useErrorRedirect } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import React, { FC, useCallback, useMemo } from 'react'
-import { movieApi, MovieData } from 'services';
+import { movieApi } from 'services';
 import { MovieListName, movieListNames, movieSlice } from 'store/reducres/movie';
 import styles from './styles.module.scss'
-import data from './top250.json'
 
 type MovieListProps = {
   name: MovieListName
@@ -15,8 +13,7 @@ type MovieListProps = {
 const Top250Movies: FC<MovieListProps> = ({
   name
 }) => {
-  // const {data: top250Data, isLoading: top250Loading} = movieApi.useGetTop250Query()
-  useErrorRedirect(false)
+  const {data, isLoading, isError} = movieApi.useGetTop250Query()
 
   const dispatch = useAppDispatch()
 
@@ -27,7 +24,7 @@ const Top250Movies: FC<MovieListProps> = ({
   return (
     <BoxMovieList 
       onClose={closeHandler}
-      isLoading={false} 
+      isLoading={isLoading || isError} 
       className={styles.box} 
       title={movieListNames[name]} 
       data={data?.items || []}
@@ -38,8 +35,7 @@ const Top250Movies: FC<MovieListProps> = ({
 const MostPopularMovies: FC<MovieListProps> = ({
   name
 }) => {
-  // const {data: top250Data, isLoading: top250Loading} = movieApi.useGetTop250Query()
-  useErrorRedirect(false)
+  const {data, isLoading, isError} = movieApi.useGetMostPopularQuery()
 
   const dispatch = useAppDispatch()
 
@@ -50,7 +46,7 @@ const MostPopularMovies: FC<MovieListProps> = ({
   return (
     <BoxMovieList 
       onClose={closeHandler}
-      isLoading={false} 
+      isLoading={isLoading || isError} 
       className={styles.box} 
       title={movieListNames[name]} 
       data={data?.items || []}
@@ -61,8 +57,7 @@ const MostPopularMovies: FC<MovieListProps> = ({
 const MostPopularTv: FC<MovieListProps> = ({
   name
 }) => {
-  // const {data: top250Data, isLoading: top250Loading} = movieApi.useGetTop250Query()
-  useErrorRedirect(false)
+  const {data, isLoading, isError} = movieApi.useGetMostPopularTVQuery()
 
   const dispatch = useAppDispatch()
 
@@ -73,7 +68,7 @@ const MostPopularTv: FC<MovieListProps> = ({
   return (
     <BoxMovieList 
       onClose={closeHandler}
-      isLoading={false} 
+      isLoading={isLoading || isError} 
       className={styles.box} 
       title={movieListNames[name]}
       data={data?.items || []}

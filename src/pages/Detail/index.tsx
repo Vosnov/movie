@@ -14,6 +14,7 @@ export const Detail = () => {
   const navigate = useNavigate()
 
   const {data, isLoading, isError} = movieApi.useGetTitleQuery(id)
+  console.log(isError)
   useErrorRedirect(isError)
 
   const back = useCallback(() => {
@@ -26,7 +27,7 @@ export const Detail = () => {
     <div className={styles.wrapper}>
       <DragElement>
         <Box 
-          isLoading={false}
+          isLoading={isLoading}
           onClose={back} 
           className={styles.box} 
           bodyClassName={styles.box_body} 
