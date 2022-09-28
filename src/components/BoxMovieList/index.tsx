@@ -12,13 +12,20 @@ type Props = {
   title?: string
   className?: string
   isLoading?: boolean
+  onClose?: () => void
 }
 
-export const BoxMovieList: FC<Props> = ({data, title, className, isLoading}) => {
+export const BoxMovieList: FC<Props> = ({data, title, className, isLoading, onClose}) => {
   const {paginationData, count, onChange} = usePagination(data, 10)
 
   return (
-    <Box isLoading={isLoading} title={title} className={cx(styles.wrapper, className)} bodyClassName={styles.box_body}>
+    <Box 
+      onClose={onClose} 
+      isLoading={isLoading} 
+      title={title} 
+      className={cx(styles.wrapper, className)} 
+      bodyClassName={styles.box_body}
+    >
       {paginationData.map(item => (
         <ShortMovie
           id={item.id} 

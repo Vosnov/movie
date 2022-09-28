@@ -1,0 +1,29 @@
+@import '../../assets/styles/mixins.scss';
+
+.wrapper {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+}
+
+.icon {
+  width: 20px;
+}
+
+.box {
+  @include flexbox(center, center);
+  flex-direction: column;
+  padding: 40px;
+}
+
+.checkbox_wrapper {
+  @include flexbox(center, space-between);
+
+  &:not(:first-child) {
+    margin-top: 15px;
+  }
+
+  p {
+    margin-right: 10px;
+  }
+}

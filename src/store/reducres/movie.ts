@@ -1,28 +1,34 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-export type Movie = {
-  id: number,
-  type: string,
-  name: string,
-  description: string
-  slogan: string
-  year: number,
+export enum MovieListName {
+  Top250,
+  MostPopularMovie,
+  MostPopularTv,
+}
+
+export const movieListNames: Record<MovieListName, string> = {
+  [MovieListName.Top250]: 'Top 250 Movies',
+  [MovieListName.MostPopularMovie]: 'Most Popular Movies',
+  [MovieListName.MostPopularTv]: 'Moist Popular TVs',
 }
 
 export type MovieState = {
-  movies: Movie[]
+  closeMoveListNames: MovieListName[]
 }
 
 const initialState: MovieState = {
-  movies: []
+  closeMoveListNames: []
 }
 
 export const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {
-    add: (state) => {
-      state.movies.push({id: 1, type: '', name: '', description: '', slogan: '', year: 10})
+    closeMovieList: (state, action: PayloadAction<MovieListName>) => {
+      state.closeMoveListNames.push(action.payload)
+    },
+    restoreMoveList: (state, action: PayloadAction<MovieListName>) => {
+      state.closeMoveListNames = state.closeMoveListNames.filter(name => name !== action.payload)
     }
   }
 })

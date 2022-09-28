@@ -16,7 +16,7 @@ export const Image: FC<ImageProps> = memo(({
   return (
     <img 
       {...props}
-      style={{border: `4px solid ${colorBorder ? getRandomColor() : 'transparent'}`, ...props.style}} 
+      style={{borderColor: colorBorder ? getRandomColor() : undefined, ...props.style}} 
       src={image} 
       alt={alt || 'img'}
     />

@@ -31,7 +31,7 @@ export const Box: FC<Props> = React.memo(({children, className, bodyClassName, t
       </div>
 
       {!isLoading && (
-        <div className={bodyClassName}>
+        <div className={cx(bodyClassName, styles.body)}>
           {children}
         </div>
       )}
