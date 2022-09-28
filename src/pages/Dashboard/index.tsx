@@ -1,6 +1,6 @@
 import { UseQueryHookResult } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { BoxMovieList } from 'components';
-import { SettingButton } from 'containers';
+import { Search, SettingButton } from 'containers';
 import { useAppDispatch, useAppSelector, useErrorRedirect } from 'hooks';
 import React, { FC, useCallback, useMemo } from 'react'
 import { movieApi, MovieData } from 'services';
@@ -101,6 +101,9 @@ export const Dashboard = () => {
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.search_wrapper}>
+        <Search />
+      </div>
       <SettingButton movieNames={startMovies.map(elem => elem.name)}/>
 
       {movies.map(movie => (

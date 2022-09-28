@@ -1,0 +1,53 @@
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/variables.scss';
+
+.wrapper {
+  width: 400px;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  outline: none;
+  border: 4px solid $black;
+  font-size: 20px;
+  padding: 6px;
+}
+
+.search_movie {
+  @include flexbox(center, flex-start);
+
+  &:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+.image {
+  width: 70px;
+  height: 100px;
+}
+
+.title {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.search_dropdown {
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  border: 4px solid $black;
+  z-index: 3;
+  background-color: $grey;
+  top: 50px;
+  left: 0;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.loader {
+  @include flexbox(center, center);
+  width: 100%;
+  height: 100px;
+}

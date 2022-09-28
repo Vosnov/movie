@@ -45,6 +45,14 @@ export type MovieDetailData = {
   releaseDate: string
 }
 
+export type MovieSearch = {
+  results: {
+    image: string
+    id: string
+    title: string
+  }[] | null
+}
+
 function instanceOfErrorWithMessage(object: any): object is ErrorMessage {
   return 'errorMessage' in object;
 }
@@ -77,6 +85,9 @@ export const movieApi = createApi({
     }),
     getTitle: build.query<MovieDetailData, string | null>({
       query: (id) => ({url: `/Title/${token}/${id}/FullActor,FullCast,Posters,Images,Trailer,Ratings`})
+    }),
+    search: build.mutation<MovieSearch, string>({
+      query: (search) => ({url: `/SearchTitle/${token}/${search}`, method: 'GET'})
     }),
   })
 })

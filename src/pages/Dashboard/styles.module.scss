@@ -8,3 +8,9 @@
 .box {
   margin-top: 40px;
 }
+
+.search_wrapper {
+  @include flexbox(center, center);
+  padding-top: 10px;
+  width: 100%;
+}
